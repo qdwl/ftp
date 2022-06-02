@@ -143,17 +143,17 @@ func Dial(addr string, options ...DialOption) (*ServerConn, error) {
 		host:     remoteAddr.IP.String(),
 	}
 
-	_, _, err := c.conn.ReadResponse(StatusReady)
-	if err != nil {
-		_ = c.Quit()
-		return nil, err
-	}
+	// _, _, err := c.conn.ReadResponse(StatusReady)
+	// if err != nil {
+	// 	_ = c.Quit()
+	// 	return nil, err
+	// }
 
 	if do.explicitTLS {
-		if err := c.authTLS(); err != nil {
-			_ = c.Quit()
-			return nil, err
-		}
+		// if err := c.authTLS(); err != nil {
+		// 	_ = c.Quit()
+		// 	return nil, err
+		// }
 		tconn = tls.Client(tconn, do.tlsConfig)
 		c.conn = textproto.NewConn(do.wrapConn(tconn))
 	}
